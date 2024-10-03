@@ -1,14 +1,68 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+<script>
+export default {
+  name: "App",
+  data() {
+    return {
+      usuario: {
+        titulo: "",
+        chip: "",
+        numero: "",
+        expiracion: "",
+        prop: "",
+        tipo: "",
+      },
+    };
+  },
+};
 </script>
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
+    <div id="app">
+      <form>
+        <div>
+          <label>Título de la tarjeta: </label>
+          <input v-model="usuario.titulo" />
+        </div>
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+        <div>
+          <label>Chip SRC: </label>
+          <input v-model="usuario.chip" />
+        </div>
+
+        <div>
+          <label>Número: </label>
+          <input v-model="usuario.numero"/>
+        </div>
+
+        <div>
+          <label>Fecha de expiración: </label>
+          <input v-model="usuario.expiracion"/>
+        </div>
+
+        <div>
+          <label>Propietario: </label>
+          <input v-model="usuario.prop"/>
+        </div>
+
+        <div>
+          <label>Tipo de tarjeta SRC: </label>
+          <input v-model="usuario.tipo"/>
+        </div>
+      </form>
+
+      <div class="carnet">
+        <h3>{{ usuario.titulo }}</h3>
+        <img width="40" :src="usuario.chip" alt="" />
+        <div>
+          <h2>{{ usuario.numero }}</h2>
+          <span>Fecha Exp: <b>{{ usuario.expiracion }}</b></span>
+        </div>
+        <footer>
+          <span> {{ usuario.prop }}</span>
+          <img :src="usuario.tipo" width="60" />
+        </footer>
+      </div>
     </div>
   </header>
 
@@ -17,31 +71,81 @@ import TheWelcome from './components/TheWelcome.vue'
   </main>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-}
+<style>
+      * {
+        margin: 0;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 60vh;
+        font-size: 10px;
+        font-family: sans-serif;
+      }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
+      #app {
+        display: flex;
+        gap: 40px;
+      }
+      form {
+        padding: 18px;
+        border-radius: 20px;
+        border: ridge 1px;
+        box-shadow: 1px 1px 1px 1px gray;
+        font-weight: bold;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        justify-content: center;
+      }
+      form div {
+        display: grid;
+        grid-template-columns: 100px 200px;
+        align-items: center;
+        gap: 5px;
+      }
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
+      form div label {
+        text-align: right;
+      }
 
-  .logo {
-    margin: 0 2rem 0 0;
-  }
+      .carnet {
+        width: 400px;
+        height: 230px;
+        background: #1c1a1e;
+        color: white;
+        border-radius: 20px;
+        padding: 20px;
+        box-shadow: 0px 0px 10px 2px black;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
 
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-}
-</style>
+      h3 {
+        font-size: 20px;
+      }
+
+      h2 {
+        font-size: 30px;
+        letter-spacing: 10px;
+        margin-bottom: 15px;
+        text-shadow: 0px 0px 1px gold;
+        font-family: Times;
+      }
+
+      b {
+        font-size: 16px;
+      }
+
+      footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        font-weight: bold;
+        font-size: 18px;
+        text-transform: uppercase;
+        font-style: italic;
+      }
+    </style>
